@@ -1,2 +1,3 @@
 def parse_arguments(arguments):
-    print(arguments)
+    pass
+    # print(arguments)

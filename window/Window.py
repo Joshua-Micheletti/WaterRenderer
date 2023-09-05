@@ -7,7 +7,7 @@ from utils.ascii_colors.colors import colors
 from controller.Controller import Controller
 
 class Window(metaclass=Singleton):
-    def __init__(self, width = 800, height = 600, name = "Pyphics", opengl_M = 4, opengl_m = 6):
+    def __init__(self, width = 800, height = 600, name = "Pyphics", opengl_M = 4, opengl_m = 3):
         
         # initialize GLFW
         if not glfw.init():
