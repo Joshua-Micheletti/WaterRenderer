@@ -13,7 +13,14 @@ class Renderer(metaclass=Singleton):
         self.vbo = 0
         self.vbo = glGenBuffers(1)
         glBindBuffer(GL_ARRAY_BUFFER, self.vbo)
+
+
+        self.vao = glGenVertexArrays(1)
+        glBindVertexArray(self.vao)
+
         print(self.vbo)
+
+        print(glGetIntegerv(GL_ARRAY_BUFFER_BINDING))
 
         vertices = [-0.5, -0.5, 0.0, 1.0, 0.0, 0.0,
                      0.5, -0.5, 0.0, 0.0, 1.0, 0.0,
@@ -34,5 +41,5 @@ class Renderer(metaclass=Singleton):
 
         RendererManager().shaders["default"].use()
         # glBindBuffer(GL_ARRAY_BUFFER, RendererManager().models["plane"].vbo)
-        glDrawArrays(GL_TRIANGLES, 0, 3)
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4)
         
