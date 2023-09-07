@@ -44,8 +44,6 @@ class Model:
 
         glBufferData(GL_ARRAY_BUFFER, formatted_vertices.nbytes, formatted_vertices, GL_STATIC_DRAW)        
 
-        
-
         self.model_matrix = glm.mat4(1.0)
 
         self.position = glm.vec3(0.0)

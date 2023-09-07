@@ -23,11 +23,11 @@ class Shader:
         glUseProgram(self.program)
 
     def _check_uniforms(self):
-        if glGetUniformLocation(self.program, "model") != 1:
+        if glGetUniformLocation(self.program, "model") != -1:
             self.uniforms["model"] = glGetUniformLocation(self.program, "model")
-        if glGetUniformLocation(self.program, "view") != 1:
+        if glGetUniformLocation(self.program, "view") != -1:
             self.uniforms["view"] = glGetUniformLocation(self.program, "view")
-        if glGetUniformLocation(self.program, "projection") != 1:
+        if glGetUniformLocation(self.program, "projection") != -1:
             self.uniforms["projection"] = glGetUniformLocation(self.program, "projection")
 
 

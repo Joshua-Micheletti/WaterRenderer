@@ -1,6 +1,7 @@
 import glfw
 from pyrr import Matrix44
 from OpenGL.GL import *
+import glm
 
 from utils.singleton.Singleton import Singleton
 from utils.ascii_colors.colors import colors
@@ -28,8 +29,8 @@ class Window(metaclass=Singleton):
             raise(RuntimeError)
 
         # create a projection matrix with an orthogonal projection
-        self.projection_matrix = Matrix44.orthogonal_projection(-width/2, width/2, -height/2, height/2, -1, 1)
-
+        # self.projection_matrix = Matrix44.orthogonal_projection(-width/2, width/2, -height/2, height/2, -1, 1)
+        self.projection_matrix = glm.perspective(glm.radians(90.0), float(width)/float(height), 0.1, 10000.0);
         # fill the width and height fields with the initial window size
         self.width = width
         self.height = height
@@ -47,7 +48,11 @@ class Window(metaclass=Singleton):
         # don't wait any screen refresh between frame swaps
         glfw.swap_interval(0)
         # disable the cursor above the window
-        # glfw.set_input_mode(self.window, glfw.CURSOR, glfw.CURSOR_DISABLED)
+        glfw.set_input_mode(self.window, glfw.CURSOR, glfw.CURSOR_DISABLED)
+
+    def get_ogl_matrix(self):
+        return(glm.value_ptr(self.projection_matrix))
+        # return(glm.value_ptr(glm.mat4(1)))
 
 
 # pass the key presses to the controller
@@ -62,9 +67,8 @@ def framebuffer_size_callback(window, width, height):
     glViewport(0, 0, width, height)
     Window().width = width
     Window().height = height
-    Window().projection_matrix = Matrix44.orthogonal_projection(-width/2, width/2, -height/2, height/2, -1, 1)
+    Window().projection_matrix = glm.perspective(glm.radians(90.0), float(width)/float(height), 0.1, 10000.0)
 
 # pass the mouse events to the controller
 def mouse_callback(window, xpos, ypos):
-    pass
-    # Controller.getInstance().handle_mouse_movement(window, xpos, ypos)
+    Controller().handle_mouse_movement(window, xpos, ypos)

@@ -33,8 +33,10 @@ def main():
     
     # game loop
     while not glfw.window_should_close(window.window):
+        # update the game depending on the inputs
         controller.update(window, dt)
 
+        # render the scene to the screen
         renderer.render()
         
         # refresh the screen and handle events
@@ -46,7 +48,7 @@ def main():
             frametime.elapsed(True, True)
             print_timer.reset()
 
-
+        # calculate the time it took to render this cycle
         dt = frametime.elapsed()
         frametime.reset()
         
