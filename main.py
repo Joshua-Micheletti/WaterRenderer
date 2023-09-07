@@ -7,6 +7,7 @@ import glfw
 from utils.parsers import argument_parser as ap
 from utils.timer.Timer import Timer
 from window.Window import Window
+from renderer.RendererManager import RendererManager
 from renderer.Renderer import Renderer
 from controller.Controller import Controller
 
@@ -16,6 +17,8 @@ def main():
 
     # window object
     window = Window()
+
+    renderer_manager = RendererManager()
     # renderer object
     renderer = Renderer()
     # controller object
